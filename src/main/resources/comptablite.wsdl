@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions
+        xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+        targetNamespace="http://comptabiliteservice/"
+        xmlns:tns="http://comptabiliteservice/"
+        xmlns="http://schemas.xmlsoap.org/wsdl/"
+        name="ComptabilteService">
+    <types>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"  targetNamespace="http://comptabiliteservice/">
+            <xs:element name="getComptabilite" type="tns:getComptabilite"/>
+            <xs:element name="getComptabiliteResponse" type="tns:getComptabiliteResponse"/>
+            <xs:complexType name="getComptabilite">
+                <xs:sequence>
+                    <xs:element name="arg0" type="xs:int" minOccurs="0"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="getComptabiliteResponse">
+                <xs:sequence>
+                    <xs:element name="return" type="xs:string" minOccurs="0"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+    </types>
+    <message name="getComptabilite">
+        <part name="parameters" element="tns:getComptabilite"/>
+    </message>
+
+    <message name="getComptabiliteResponse">
+        <part name="parameters" element="tns:getComptabiliteResponse"/>
+    </message>
+    <portType name="ComptabiliteService">
+        <operation name="getComptabilite">
+            <input message="tns:getAge"/>
+            <output message="tns:getAgeResponse"/>
+        </operation>
+    </portType>
+    <binding name="ComptabiliteServicePortBinding" type="tns:ComptabiliteService">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <operation name="getComptabilite">
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="getComptabilite">
+        <port name="ComptabiliteServicePort" binding="tns:ComptabiliteServicePortBinding">
+            <soap:address location="http://localhost:8080/Comptabilite/getTaxe"/>
+        </port>
+    </service>
+</definitions>
+
+
+
+
+
+
